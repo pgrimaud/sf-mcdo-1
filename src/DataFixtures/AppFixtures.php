@@ -61,7 +61,7 @@ class AppFixtures extends Fixture
                 $productRestaurant->setProduct($product);
                 $productRestaurant->setRestaurant($restaurant);
                 $productRestaurant->setStock(rand(50, 2000));
-                $productRestaurant->setPrice(rand(1, 10));
+                $productRestaurant->setPrice(rand(100, 1000) / 100);
 
                 $manager->persist($productRestaurant);
             }

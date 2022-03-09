@@ -6,6 +6,7 @@ use App\Repository\DistrictRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: DistrictRepository::class)]
 class District
@@ -22,9 +23,11 @@ class District
     private $population;
 
     #[ORM\Column(type: 'datetime')]
+    #[Gedmo\Timestampable(on: 'create')]
     private $createdAt;
 
     #[ORM\Column(type: 'datetime')]
+    #[Gedmo\Timestampable(on: 'update')]
     private $updatedAt;
 
     #[ORM\OneToMany(mappedBy: 'district', targetEntity: Restaurant::class)]
@@ -116,5 +119,10 @@ class District
         }
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getName();
     }
 }
